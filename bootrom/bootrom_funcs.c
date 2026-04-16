@@ -17,32 +17,32 @@ void store_rtc_time_difference(uint32_t addr)
 
 uint32_t is_secure_boot(void)
 {
-    return ((uint32_t(*)(void))readl(PTR_IS_SECUREBOOT))();
+    return ((uint32_t(*)(void))(uintptr_t)readl(PTR_IS_SECUREBOOT))();
 }
 
 void set_status_bit(uint32_t status_register_sel, uint32_t status_bit)
 {
-    ((void(*)(uint32_t, uint32_t))readl(PTR_SET_STATUS_BIT))(status_register_sel, status_bit);
+    ((void(*)(uint32_t, uint32_t))(uintptr_t)readl(PTR_SET_STATUS_BIT))(status_register_sel, status_bit);
 }
 
 void usb_reinit(uint32_t struct_addr, uint32_t delay, uint32_t speed)
 {
-    ((void(*)(uint32_t, uint32_t, uint32_t))readl(PTR_USB_REINIT))(struct_addr, delay, speed);
+    ((void(*)(uint32_t, uint32_t, uint32_t))(uintptr_t)readl(PTR_USB_REINIT))(struct_addr, delay, speed);
 }
 
 void raw_usb_send(uint32_t address, uint32_t len)
 {
-    ((void(*)(uint32_t, uint32_t))readl(PTR_USB_SEND))(address, len);
+    ((void(*)(uint32_t, uint32_t))(uintptr_t)readl(PTR_USB_SEND))(address, len);
 }
 
 uint32_t usb_receive(uint32_t address, uint32_t max_size)
 {
-    return ((uint32_t(*)(uint32_t, uint32_t))readl(PTR_USB_RECEIVE))(address, max_size);
+    return ((uint32_t(*)(uint32_t, uint32_t))(uintptr_t)readl(PTR_USB_RECEIVE))(address, max_size);
 }
 
 void usb_send(char *msg)
 {
-    raw_usb_send((uint32_t)msg, strlen(msg));
+    raw_usb_send((uint32_t)(uintptr_t)msg, strlen(msg));
 }
 
 void setup_cryptocell_func_ptrs(void)

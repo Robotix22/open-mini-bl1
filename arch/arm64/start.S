@@ -6,8 +6,11 @@
 .global _start
 
 _start:
-    ldr     x3, =__bss_start
-    ldr     x1, =__bss_end
+    adrp x3, __bss_start
+    add  x3, x3, :lo12:__bss_start
+
+    adrp x1, __bss_end
+    add  x1, x1, :lo12:__bss_end
     mov     w2, #0
 
 bss_clear_loop:
@@ -17,7 +20,8 @@ bss_clear_loop:
     b       bss_clear_loop
 
 bss_done:
-    ldr     x0, =__bss_start
+    adrp x0, __bss_start
+    add  x0, x0, :lo12:__bss_start
     bl      main
 
 hang:

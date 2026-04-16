@@ -4,6 +4,18 @@ SECTIONS
 {
     . = 0x02022000;
 
+    /DISCARD/ : {
+        *(.interp)
+        *(.note*)
+        *(.comment)
+        *(.dynamic)
+        *(.dynsym)
+        *(.dynstr)
+        *(.rela*)
+        *(.rela.*)
+        *(.gnu*)
+    }
+
     .header : {
         KEEP(*(.header))
     }
@@ -13,13 +25,8 @@ SECTIONS
         *(.text*)
     }
 
-    .rodata : {
-        *(.rodata*)
-    }
-
-    .data : {
-        *(.data*)
-    }
+    .rodata : { *(.rodata*) }
+    .data   : { *(.data*) }
 
     .bss (NOLOAD) : {
         __bss_start = .;

@@ -34,4 +34,6 @@ int main(void)
 
 	set_status_bit(0, BL1_END);
 	jump_to_epbl();
+
+	return -1;
 }

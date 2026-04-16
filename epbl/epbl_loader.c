@@ -70,5 +70,5 @@ uint32_t load_epbl_usb(void)
 
 void jump_to_epbl(void)
 {
-    ((void(*)(void))get_epbl_load_address() + 0x0010)();
+    ((void(*)(void))(uintptr_t)(get_epbl_load_address() + 0x0010))();
 }
