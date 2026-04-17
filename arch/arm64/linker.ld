@@ -16,10 +16,6 @@ SECTIONS
         *(.gnu*)
     }
 
-    .header : {
-        KEEP(*(.header))
-    }
-
     .text : {
         *(.text.startup*)
         *(.text*)

@@ -1,11 +1,13 @@
-.section .header, "a"
-.align 4
-.space 0x10
-
-.section .text.startup, "ax"
 .global _start
 
 _start:
+    // NOPs are needed, houston would jump to the header
+    // as it expects payloads to be loaded in the RX base
+    // but we can't just remove the header, since EL3_MON
+    // freaks out for whatever reason.
+    nop
+    nop
+    nop
     adrp x3, __bss_start
     add  x3, x3, :lo12:__bss_start
 
@@ -20,8 +22,6 @@ bss_clear_loop:
     b       bss_clear_loop
 
 bss_done:
-    adrp x0, __bss_start
-    add  x0, x0, :lo12:__bss_start
     bl      main
 
 hang:

@@ -63,5 +63,6 @@ void complete_bl1_rx_exec(void)
 {
 	set_bl1_size(0x3000);
 	set_bl1_checksum(0x7A1A1BEF);
+	writel((0x3000) / BLOCK_SIZE, 0x02022000); // Set size parameter, without this EL3_MON will freak out.
 	setup_cryptocell_func_ptrs();
 }
