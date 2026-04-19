@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#include <exynos9830.h>
+#include <exynos9810.h>
 
 #include <memory.h>
 

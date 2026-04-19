@@ -2,7 +2,7 @@ ENTRY(_start)
 
 SECTIONS
 {
-    . = 0x02022000;
+    . = 0x02021800;
 
     /DISCARD/ : {
         *(.interp)
